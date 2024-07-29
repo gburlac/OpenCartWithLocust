@@ -1,0 +1,5 @@
+# all not need folders and files
+**/out/*
+**/target/*
+**/.idea/*
+**/*.iml
