@@ -27,7 +27,7 @@ class OpenCart(SequentialTaskSet):
         my_reader = CSVReader("C:\\projects\\OpenCartWithLocust\\Locust\\users.csv").read_data()
         #self.username = random.choice(my_reader)['username']
         self.username = my_reader.pop()['username']
-        self.password = my_reader.pop() ['password']
+        self.password = my_reader.pop()['password']
         #print("Random username=== " + self.username)
         with self.client.post("/index.php?route=account/login",
                               name="Login to account",
@@ -108,6 +108,6 @@ class OpenCart(SequentialTaskSet):
 
 class Runner(FastHttpUser):
     wait_time = between(1, 4)
-    host = "http://172.23.176.159/opencart/upload/"
-    #host = "https://opencart.abstracta.us"
+    #host = "http://172.23.176.159/opencart/upload/"
+    host = "https://opencart.abstracta.us"
     tasks = [OpenCart]
