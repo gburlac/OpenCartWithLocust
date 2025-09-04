@@ -1,0 +1,24 @@
+import base64
+import gzip
+import io
+
+data = """
+H4sIAAAAAAAAAH1U23KqSBT9lZRPMzVeaK5ilQ9qJMEIEWwagjllcWkEbaADGNFT59+niTVTZ/IwvMBevdfutbp68bNX4Y8zrhs97k16IFBiAOJkEIciGIih
+qgzGeIwHicDzKo/DRE3GvX4vxUGMq5oRfs7OTVpW2S1osrKY7vB1JZqedXRuOjAzXdYJkZEXmwZxrrCgbqARD+UgCIj/4Z7sp1CjHyinfpC3NfRoEC7VpQVt
+3zgh2fUowqz2n1rGJ5JLbNNARLbyJkBLv3Zdegoc6dnJWzYPSZDEWgyovYFctl6sqsC1stdsBS0nhdbJ6DAOe7MOe0HA6uo0fIq6WrvrXalDZuAWu/p3Yhrf
+h5mONuuIn1Eep2FObm+eTUNeSuJncvG3nWFzvtXMhXXVaz2XMp8dggEjzry9ceZxxpvZJYtytfY9I3sldeacVMNGKnSR6dgOSCCYa85JcyBYJRaaW2zdtZHe
+7bmFXKt5wPQdYGsQqRtnibYWsjcO+fd7BTkJ6oRje5NbdP2mp0A331s9xS477Fxr7nrnn1Fhp+Fi3nk7IM8kUdZpR2K0+F27IxjbSxa4Gqcfy9a8WYJ5tHjj
+8a1l2kDEo2v4fzOPS8F8jHjz8e1i3pZZYg3RPH9Zc+MGKpLiPm1jQcF5eyhlIKiGElbOWvC9tWRvLlmilWLoH6/6Mq0QalcfpnVS0peNyAnHcGG38pJf6rO5
+zVsb60f/ISqLAkf3CxmRssYMW5RFg4tmsMbFoUmnO1m+N36BzZXi6S6glGTR10UeHeuyYA3PZd1MdzVVeEoqMFFFUWCoU+NqMDuwcdPdjAZRigfPTUMXJGPQ
+SBxKQ+Xhj1XwGYzAcDzk9kAGf/74xXKDi6iMs+LAguNAbfAVJUY0MMtQF7/N6xaytnNFWJGylXoyGv1n91FO6YCU5elMR/dXzQgswNW1NynOhPR7zH1nqgvn
+fv/Anvf39x6tyvYKmc2umHxBxlbfPppd3f/WhwJy/q3xL54DKq9ykgSErn2/77zkuK6DA7ZxhLNPHMOMAU2Q094EKKIiizKnMJbQ/+f/8oKvNk5wxc4A36X+
++hsUO2SkfAQAAA==""".replace("\n", "").strip()
+
+# Step 1: Base64 decode
+decoded = base64.b64decode(data)
+
+# Step 2: GZIP decompress
+with gzip.GzipFile(fileobj=io.BytesIO(decoded)) as f:
+    result = f.read().decode('utf-8')
+
+print(result)
